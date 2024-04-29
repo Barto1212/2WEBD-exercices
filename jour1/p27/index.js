@@ -1,15 +1,18 @@
+const classicBtn = document.getElementById('classic-btn')
+const arrowBtn = document.getElementById('arrow-btn')
 
 
-const title = document.querySelector('h1')
+function classicFunction(event) {
+  console.log(this)
+  console.log("fonction classique appellée")
+} 
 
-title.addEventListener('click', ()=> console.log("hello supinfo"))
-
-function tri(indice) {
-  return indice === 2
+if (classicBtn) {
+  classicBtn.addEventListener('click', classicFunction)
 }
-
-const tableau = [1,2,3,4]
-
-const tableau2 = tableau.filter((indice)=> indice === 2)
-
-console.log(tableau2)
+if (arrowBtn) {
+  arrowBtn.addEventListener('click', () => {
+    console.log(this)
+    console.log('fonction flechée appelée')
+  })
+}
