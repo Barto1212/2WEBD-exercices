@@ -1,0 +1,7 @@
+{
+  "todos": [
+    { "id": 1, "done": false, "label": "faire la vaisselle" },
+    { "id": 2, "done": false, "label": "étudier React" },
+    { "id": 3, "done": false, "label": "regarder une série" }
+  ]
+}
