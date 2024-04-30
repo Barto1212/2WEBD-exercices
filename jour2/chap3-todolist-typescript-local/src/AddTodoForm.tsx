@@ -12,20 +12,27 @@ const AddTodoForm = ({
   }
 
   const addTodo = (todoLabel: string) => {
+    if (!todoLabel) return
     setTodoList((oldTodoList) => {
       const newTodo: TodoType = {
         label: todoLabel,
         id: Date.now(),
         done: false,
       }
+      setValue("")
       return [...oldTodoList, newTodo]
     })
   }
   return (
-    <>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        addTodo(value)
+      }}
+    >
       <input value={value} onChange={handleChange} type="text" />
-      <button onClick={() => addTodo(value)}>Ajouter</button>
-    </>
+      <button type="submit">Ajouter</button>
+    </form>
   )
 }
 
