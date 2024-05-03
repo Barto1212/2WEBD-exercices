@@ -1,24 +1,15 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import { getPokemons, PokeResume } from "./services/pokemon.service";
-import { PokemonCard } from "./PokemonCard";
+import { Route, Routes } from "react-router-dom";
+import { PokemonList } from "./pages/PokemonList";
+import { PokemonDetails } from "./components/PokemonDetail";
 
 function App() {
-  const [pokelist, setPokelist] = useState<PokeResume[]>([]);
-  useEffect(() => {
-    getPokemons().then((res) => {
-      setPokelist(res.results);
-    });
-  }, []);
   return (
-    <ul className="pokelist">
-      {pokelist.length > 0 &&
-        pokelist.map((pokemon, id) => (
-          <li>
-            <PokemonCard id={(id + 1).toString()} pokeResume={pokemon} />
-          </li>
-        ))}
-    </ul>
+    <Routes>
+      <Route path="/" element={<PokemonList />} />
+      <Route path="/pokemon/:pokemonName" element={<PokemonDetails />} />
+      <Route path="*" element={"Cette page n'existe pas"} />
+    </Routes>
   );
 }
 
