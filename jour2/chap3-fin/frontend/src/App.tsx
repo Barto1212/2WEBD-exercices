@@ -1,22 +1,30 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./App.css"
 import { TodoComponent } from "./TodoComponent"
 import AddTodoForm from "./AddTodoForm"
+import { getTodos } from "./services/todo.service"
 
 export type TodoType = {
-  id: number
+  id: string
   done: boolean
   label: string
 }
 
-const initialToDoList: TodoType[] = [
-  { id: 1, done: false, label: "faire la vaisselle" },
-  { id: 2, done: false, label: "étudier React" },
-  { id: 3, done: false, label: "regarder une série" },
-]
+export type DataState = "needRefresh" | "loading" | "success"
+
+const initialToDoList: TodoType[] = []
 
 function App() {
-  const [todoList, setTodoList] = useState(initialToDoList)
+  const [todoList, setTodoList] = useState<TodoType[]>(initialToDoList)
+  const [dataState, setDataState] = useState<DataState>("needRefresh")
+  useEffect(() => {
+    if (dataState === "needRefresh") {
+      getTodos().then((response) => {
+        setTodoList(response)
+        setDataState("success")
+      })
+    }
+  }, [dataState])
   return (
     <>
       <h1>To do list</h1>
@@ -24,12 +32,12 @@ function App() {
         {todoList.map((item) => {
           return (
             <div key={item.id}>
-              <TodoComponent setTodoList={setTodoList} todo={item} />
+              <TodoComponent todo={item} setDataState={setDataState} />
             </div>
           )
         })}
       </ul>
-      <AddTodoForm setTodoList={setTodoList} />
+      <AddTodoForm setDataState={setDataState} />
     </>
   )
 }

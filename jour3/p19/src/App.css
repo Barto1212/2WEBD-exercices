@@ -1,0 +1,14 @@
+.app {
+  display: flex;
+  width: 100vw;
+}
+.nav {
+  width: 30vw;
+}
+
+.container {
+  width: 70vw;
+}
+li {
+  list-style: none;
+}

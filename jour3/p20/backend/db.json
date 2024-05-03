@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "done": true,
+      "label": "faire la vaisselle"
+    },
+    {
+      "id": "2",
+      "done": true,
+      "label": "étudier React"
+    },
+    {
+      "id": "3",
+      "done": true,
+      "label": "regarder une série"
+    },
+    {
+      "id": "1714644044732",
+      "label": "Ajouter un router",
+      "done": false
+    }
+  ]
+}
